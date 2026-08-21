@@ -3,7 +3,7 @@ package com.rtm516.mcxboxbroadcast.core;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.cloudburstmc.protocol.bedrock.codec.BedrockCodec;
-import org.cloudburstmc.protocol.bedrock.codec.v2169.Bedrock_v2169;
+import org.cloudburstmc.protocol.bedrock.codec.v2168.Bedrock_v2168;
 
 import java.net.URI;
 import java.time.Duration;
@@ -50,8 +50,14 @@ public class Constants {
 
     /**
      * Used for the micro nethernet server that transfers the client to the real server
+     *
+     * Targets Minecraft Bedrock 1.26.4x (protocol 2168, i.e. 1.26.40 - 1.26.44).
+     * 1.26.45 (protocol 2169 / Bedrock_v2169) is intentionally NOT used here: it is not
+     * yet supported, so we stay on the 2168 codec which the wiki confirms 1.26.44 uses.
+     * The Bedrock client only gates connections on the protocol number (2168), not the
+     * version string, so 1.26.44 clients connect fine against this codec.
      */
-    public static final BedrockCodec BEDROCK_CODEC = Bedrock_v2169.CODEC;
+    public static final BedrockCodec BEDROCK_CODEC = Bedrock_v2168.CODEC;
 
     /**
      * Config version for upgrade purposes
